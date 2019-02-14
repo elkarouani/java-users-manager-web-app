@@ -39,6 +39,20 @@ public class UserDAO {
 		}
 	}
 	
+	public static int modifyUser(User user){
+		Connection con = getConnection();
+		try {
+			return con.createStatement().executeUpdate(""
+					+ "update users SET " 
+					+ "`nom` = '" + user.getNom() + "',"
+					+ "`prenom` = '" + user.getPrenom() + "',"
+					+ "`adresse` = '" + user.getAdresse() + "'"
+					+ " where `cin` = '" + user.getCin() + "' ;");
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	
 	public static ArrayList<User> getAllUsers(){
 		Connection con = getConnection();
 		ArrayList<User> userList = new ArrayList<User>();

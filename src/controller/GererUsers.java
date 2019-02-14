@@ -41,22 +41,44 @@ public class GererUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String cin = request.getParameter("cin");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String adresse = request.getParameter("adresse");
-		
-		User user = new User(cin, nom, prenom, adresse);
-		
-		int result = UserDAO.addUser(user);
-		
-		if(result != -1){
-			ArrayList<User> usersList = UserDAO.getAllUsers();
+		if (request.getParameter("add") != null) {
+			String cin = request.getParameter("cin");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String adresse = request.getParameter("adresse");
 			
-			request.setAttribute( "users", usersList );
-		    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
-		} else {
-			response.sendRedirect("index.jsp");
+			User user = new User(cin, nom, prenom, adresse);
+			
+			int result = UserDAO.addUser(user);
+			
+			if(result != -1){
+				ArrayList<User> usersList = UserDAO.getAllUsers();
+				
+				request.setAttribute( "users", usersList );
+			    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+			} else {
+				response.sendRedirect("index.jsp");
+			}
+		}
+		
+		if (request.getParameter("modify") != null) {
+			String cin = request.getParameter("cin");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String adresse = request.getParameter("adresse");
+			
+			User user = new User(cin, nom, prenom, adresse);
+			
+			int result = UserDAO.modifyUser(user);
+			
+			if(result != -1){
+				ArrayList<User> usersList = UserDAO.getAllUsers();
+				
+				request.setAttribute( "users", usersList );
+			    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+			} else {
+				response.sendRedirect("index.jsp");
+			}
 		}
 	}
 

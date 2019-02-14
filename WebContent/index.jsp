@@ -25,14 +25,21 @@
 		    <th>Nom</th>
 		    <th>Prenom</th>
 		    <th>Adresse</th>
+		    <th>Actions</th>
 		  </tr>
 		  <% for(User user : users ) { %>
-			<tr>
-		    	<td><%= user.getCin() %></td>
-		    	<td><%= user.getNom() %></td>
-		    	<td><%= user.getPrenom() %></td>
-		    	<td><%= user.getAdresse() %></td>
-		  	</tr>		  	
+			<form method="post" action="/UsersManager/GererUsers">
+				<tr>
+			    	<td><input type="text" name="cin" value="<%= user.getCin() %>" /></td>
+			    	<td><input type="text" name="nom" value="<%= user.getNom() %>" /></td>
+			    	<td><input type="text" name="prenom" value="<%= user.getPrenom() %>" /></td>
+			    	<td><input type="text" name="adresse" value="<%= user.getAdresse() %>" /></td>
+			    	<td>
+			    		<input type="submit" name="modify" value="modifier">
+			    		<input type="submit" name="delete" value="supprimer">
+			    	</td>
+			  	</tr>
+			</form>		  	
 		  <% } %>
 		</table>
 		
