@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +51,10 @@ public class GererUsers extends HttpServlet {
 		int result = UserDAO.addUser(user);
 		
 		if(result != -1){
-			response.getWriter().append("User well created !!");
+			ArrayList<User> usersList = UserDAO.getAllUsers();
+			
+			request.setAttribute( "users", usersList );
+		    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
 		} else {
 			response.sendRedirect("index.jsp");
 		}

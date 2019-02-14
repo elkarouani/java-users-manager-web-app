@@ -2,6 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -34,5 +37,29 @@ public class UserDAO {
 		} catch (Exception e) {
 			return -1;
 		}
+	}
+	
+	public static ArrayList<User> getAllUsers(){
+		Connection con = getConnection();
+		ArrayList<User> userList = new ArrayList<User>();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users ;");
+			while (rs.next()) {
+				String cin = rs.getString("cin");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String adresse = rs.getString("adresse");
+				
+				User user = new User(cin, nom, prenom, adresse);
+				
+				userList.add(user);
+			}
+			
+			return userList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
