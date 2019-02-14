@@ -80,6 +80,21 @@ public class GererUsers extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			}
 		}
+		
+		if (request.getParameter("delete") != null) {
+			String cin = request.getParameter("cin");
+			
+			int result = UserDAO.deleteUser(cin);
+			
+			if(result != -1){
+				ArrayList<User> usersList = UserDAO.getAllUsers();
+				
+				request.setAttribute( "users", usersList );
+			    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+			} else {
+				response.sendRedirect("index.jsp");
+			}
+		}
 	}
 
 }

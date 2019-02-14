@@ -53,6 +53,17 @@ public class UserDAO {
 		}
 	}
 	
+	public static int deleteUser(String cin) {
+		Connection con = getConnection();
+		try {
+			return con.createStatement().executeUpdate(""
+					+ "delete from users "
+					+ " where `cin` = '" + cin + "' ;");
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	
 	public static ArrayList<User> getAllUsers(){
 		Connection con = getConnection();
 		ArrayList<User> userList = new ArrayList<User>();
