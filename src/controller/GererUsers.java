@@ -48,6 +48,13 @@ public class GererUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if (request.getParameter("search") != null) {
+			String typed_cin = request.getParameter("cin");
+			ArrayList<User> usersList = UserDAO.getUsersByCin(typed_cin);
+			request.setAttribute( "users", usersList );
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+		}
+		
 		if (request.getParameter("add") != null) {
 			String cin = request.getParameter("cin");
 			String nom = request.getParameter("nom");

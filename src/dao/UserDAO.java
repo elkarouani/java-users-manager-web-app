@@ -87,4 +87,28 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
+	public static ArrayList<User> getUsersByCin(String typed_cin){
+		Connection con = getConnection();
+		ArrayList<User> userList = new ArrayList<User>();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users where cin = '"+ typed_cin +"' ;");
+			while (rs.next()) {
+				String cin = rs.getString("cin");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String adresse = rs.getString("adresse");
+				
+				User user = new User(cin, nom, prenom, adresse);
+				
+				userList.add(user);
+			}
+			
+			return userList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

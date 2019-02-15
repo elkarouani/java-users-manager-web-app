@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Insert title here</title>
+<title>Users Manager</title>
 </head>
 <body>
 	<form method="post" action="/UsersManager/GererUsers">
@@ -31,27 +31,31 @@
 		</form>
 		<br /><br />
 		<table>
-		  <tr>
-		    <th>CIN</th>
-		    <th>Nom</th>
-		    <th>Prenom</th>
-		    <th>Adresse</th>
-		    <th>Actions</th>
-		  </tr>
-		  <% for(User user : users ) { %>
-			<form method="post" action="/UsersManager/GererUsers">
-				<tr>
-			    	<td><input type="text" name="cin" value="<%= user.getCin() %>" /></td>
-			    	<td><input type="text" name="nom" value="<%= user.getNom() %>" /></td>
-			    	<td><input type="text" name="prenom" value="<%= user.getPrenom() %>" /></td>
-			    	<td><input type="text" name="adresse" value="<%= user.getAdresse() %>" /></td>
-			    	<td>
-			    		<input type="submit" name="modify" value="modifier">
-			    		<input type="submit" name="delete" value="supprimer">
-			    	</td>
+		  	<% if (users.size() != 0) { %>
+			  	<tr>
+			    	<th>CIN</th>
+			    	<th>Nom</th>
+			    	<th>Prenom</th>
+			    	<th>Adresse</th>
+			    	<th>Actions</th>
 			  	</tr>
-			</form>		  	
-		  <% } %>
+				<% for(User user : users ) { %>
+					<form method="post" action="/UsersManager/GererUsers">
+						<tr>
+				    		<td><input type="text" name="cin" value="<%= user.getCin() %>" /></td>
+				    		<td><input type="text" name="nom" value="<%= user.getNom() %>" /></td>
+				    		<td><input type="text" name="prenom" value="<%= user.getPrenom() %>" /></td>
+				    		<td><input type="text" name="adresse" value="<%= user.getAdresse() %>" /></td>
+				    		<td>
+				    			<input type="submit" name="modify" value="modifier">
+				    			<input type="submit" name="delete" value="supprimer">
+				    		</td>
+				  		</tr>
+					</form>		  	
+			  	<% } %>
+			<% } else { %>
+				<tr><th>There is no user with that CIN !!</th></tr>
+			<% } %>
 		</table>
 	<% } else { %>
 		<a href="/UsersManager/GererUsers?action=display">Display users list</a>
