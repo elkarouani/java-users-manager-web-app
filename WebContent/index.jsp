@@ -17,7 +17,12 @@
 		adresse <input type="text" name="adresse" value="" /><br /><br />
 		<input type="submit" name="add" value="ajouter"><br /><br />
 	</form>
+	<br /><br />
+	
+	
 	<% if (users != null) { %>
+		<br /><br />
+		<a href="/UsersManager/">Hide users list</a>
 		<br /><br />
 		<table>
 		  <tr>
@@ -42,7 +47,10 @@
 			</form>		  	
 		  <% } %>
 		</table>
-		
+	<% } else { %>
+		<a href="/UsersManager/GererUsers?action=display">Display users list</a>
 	<% } %>
+	
+		
 </body>
 </html>

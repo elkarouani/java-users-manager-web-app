@@ -33,7 +33,14 @@ public class GererUsers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if (request.getParameter("action").equals("display")){
+			ArrayList<User> usersList = UserDAO.getAllUsers();
+			
+			request.setAttribute( "users", usersList );
+		    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+		} else {
+			System.out.println(request.getParameter("action"));
+		}
 	}
 
 	/**
