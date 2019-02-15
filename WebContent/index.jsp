@@ -24,6 +24,12 @@
 		<br /><br />
 		<a href="/UsersManager/">Hide users list</a>
 		<br /><br />
+		<form method="post" action="/UsersManager/GererUsers">
+			<label for="searchInput">Search By CIN : </label>
+			<input id="searchInput" type="text" name="cin" value="">
+			<input type="submit" name="search" value="Search">
+		</form>
+		<br /><br />
 		<table>
 		  <tr>
 		    <th>CIN</th>
