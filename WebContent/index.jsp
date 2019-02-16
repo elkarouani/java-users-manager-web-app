@@ -48,7 +48,7 @@
 				</div>
 				<br /><br />
 				<div class="card-body">
-					<table>
+					<table class="table">
 				  		<% if (users.size() != 0) { %>
 					  		<tr>
 					    		<th>CIN</th>
@@ -60,13 +60,13 @@
 							<% for(User user : users ) { %>
 								<form method="post" action="/UsersManager/GererUsers">
 									<tr>
-						    			<td><input type="text" name="cin" value="<%= user.getCin() %>" /></td>
-						    			<td><input type="text" name="nom" value="<%= user.getNom() %>" /></td>
-						    			<td><input type="text" name="prenom" value="<%= user.getPrenom() %>" /></td>
-						    			<td><input type="text" name="adresse" value="<%= user.getAdresse() %>" /></td>
+						    			<td><input class="form-control" type="text" name="cin" value="<%= user.getCin() %>" /></td>
+						    			<td><input class="form-control" type="text" name="nom" value="<%= user.getNom() %>" /></td>
+						    			<td><input class="form-control" type="text" name="prenom" value="<%= user.getPrenom() %>" /></td>
+						    			<td><input class="form-control" type="text" name="adresse" value="<%= user.getAdresse() %>" /></td>
 						    			<td>
-						    				<input type="submit" name="modify" value="modifier">
-						    				<input type="submit" name="delete" value="supprimer">
+						    				<input class="btn btn-warning" type="submit" name="modify" value="modifier">
+						    				<input class="btn btn-danger" type="submit" name="delete" value="supprimer">
 						    			</td>
 						  			</tr>
 								</form>		  	
