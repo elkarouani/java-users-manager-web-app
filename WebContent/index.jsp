@@ -31,10 +31,12 @@
 				</form>
   			</div>
 		</div>
-		<br /><br />
+		<br />
 		
 		<% if (users != null) { %>
-			<a href="/UsersManager/">Hide users list</a>
+			<a class="btn btn-link toggleList" href="/UsersManager/">
+				<ion-icon name="remove-circle-outline" size="large"></ion-icon>Hide Users List
+			</a>
 			<br /><br />
 			<form method="post" action="/UsersManager/GererUsers">
 				<label for="searchInput">Search By CIN : </label>
@@ -70,7 +72,12 @@
 				<% } %>
 			</table>
 		<% } else { %>
-			<a href="/UsersManager/GererUsers?action=display">Display users list</a>
+			<a class="btn btn-link toggleList" href="/UsersManager/GererUsers?action=display">
+				<ion-icon name="add-circle-outline" size="large"></ion-icon>Display Users List
+			</a>
 		<% } %>
+		<br />
+		
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 	</body>
 </html>
