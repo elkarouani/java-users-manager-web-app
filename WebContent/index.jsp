@@ -13,6 +13,7 @@
 		<title>Users Manager</title>
 	</head>
 	<body>
+		<div><%= request.getAttribute("message") %></div>	
 		<div class="card login">
   			<div class="card-header text-center">
     			Create New User : 
@@ -20,13 +21,13 @@
   			<div class="card-body">
     			<form class="form-group" method="post" action="/UsersManager/GererUsers">
 					<label for="cinInput">cin : </label>
-					<input id="cinInput" class="form-control" type="text" name="cin" value="" />
+					<input id="cinInput" class="form-control" type="text" name="cin" value="" required="required" />
 					<label for="nomInput">nom : </label>
-					<input id="nomInput" class="form-control" type="text" name="nom" value="" />
+					<input id="nomInput" class="form-control" type="text" name="nom" value="" required="required" />
 					<label for="prenomInput">prenom : </label>
-					<input id="prenomInput" class="form-control" type="text" name="prenom" value="" />
+					<input id="prenomInput" class="form-control" type="text" name="prenom" value="" required="required" />
 					<label for="adresseInput">adresse : </label>
-					<input id="adresseInput" class="form-control" type="text" name="adresse" value="" /><br/>
+					<input id="adresseInput" class="form-control" type="text" name="adresse" value="" required="required" /><br/>
 					<input class="form-control btn btn-primary" type="submit" name="add" value="ajouter">
 				</form>
   			</div>

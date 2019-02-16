@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import Model.User;
 import dao.UserDAO;
 
@@ -61,17 +63,23 @@ public class GererUsers extends HttpServlet {
 			String prenom = request.getParameter("prenom");
 			String adresse = request.getParameter("adresse");
 			
-			User user = new User(cin, nom, prenom, adresse);
-			
-			int result = UserDAO.addUser(user);
-			
-			if(result != -1){
-				ArrayList<User> usersList = UserDAO.getAllUsers();
+			if(User.checkUniqueUser(cin)){
+				User user = new User(cin, nom, prenom, adresse);
 				
-				request.setAttribute( "users", usersList );
-			    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+				int result = UserDAO.addUser(user);
+				
+				if(result != -1){
+					ArrayList<User> usersList = UserDAO.getAllUsers();
+					
+					request.setAttribute( "users", usersList );
+				    this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+				} else {
+					response.sendRedirect("index.jsp");
+				}
 			} else {
-				response.sendRedirect("index.jsp");
+				String message = "There is really existing user with that CIN";
+				request.setAttribute( "message", message );
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
 			}
 		}
 		

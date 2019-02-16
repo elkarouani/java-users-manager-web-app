@@ -43,4 +43,8 @@ public class User {
 	public String toString() {
 		return "User [cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + "]";
 	}
+	
+	public static boolean checkUniqueUser(String cin) {
+		return false;
+	}
 }
