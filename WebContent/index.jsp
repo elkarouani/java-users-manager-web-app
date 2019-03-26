@@ -13,7 +13,13 @@
 		<title>Users Manager</title>
 	</head>
 	<body>
-		<div><%= request.getAttribute("message") %></div>	
+		<div>
+			<% if(request.getAttribute("message") != null){ %>
+				<div class="alert alert-success text-center" role="alert">
+  					<%= request.getAttribute("message") %>
+				</div>
+			<% } %>
+		</div>	
 		<div class="card login">
   			<div class="card-header text-center">
     			Create New User : 
